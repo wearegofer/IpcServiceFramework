@@ -72,7 +72,7 @@ namespace JKang.IpcServiceFramework
                 catch (Exception ex)
                 {
                     logger?.LogError(ex, ex.Message);
-                    await writer.WriteAsync(IpcResponse.Fail($"Internal server error: {ex.Message}"), cancellationToken).ConfigureAwait(false);
+                    await writer.WriteAsync(IpcResponse.Fail($"Internal server error: {ex.Message}", ex), cancellationToken).ConfigureAwait(false);
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace JKang.IpcServiceFramework
             }
             catch (Exception ex)
             {
-                return IpcResponse.Fail($"Internal server error: {ex.Message}");
+                return IpcResponse.Fail($"Internal server error: {ex.Message}", ex);
             }
         }
 
